@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Akses Kamera</title>
 </head>
 <body>
   <h1>Akses Kamera dari Web</h1>
   <video id="video" width="640" height="480" autoplay></video>
-  <script>
-    const video = document.getElementById('video');
 
-    // Minta akses kamera
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then((stream) => {
-        video.srcObject = stream;
-      })
-      .catch((err) => {
-        console.error('Gagal mengakses kamera:', err);
-        alert('Gagal mengakses kamera: ' + err.message);
-      });
+  <script>
+    // Pastikan script dijalankan setelah halaman dimuat
+    window.onload = function() {
+      const video = document.getElementById('video');
+
+      // Minta akses kamera
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then((stream) => {
+          video.srcObject = stream;
+        })
+        .catch((err) => {
+          console.error('Gagal mengakses kamera:', err);
+          alert('Gagal mengakses kamera: ' + err.message);
+        });
+    };
   </script>
 </body>
 </html>
