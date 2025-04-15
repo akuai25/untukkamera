@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Halaman Kamera</title>
+  <title>Akses Kamera</title>
 </head>
 <body>
-  <h1>Halo, Dunia!</h1>
-  <p>Ini halaman uji coba GitHub Pages</p>
+  <h1>Akses Kamera dari Web</h1>
+  <video id="video" width="640" height="480" autoplay></video>
+  <script>
+    const video = document.getElementById('video');
+
+    // Minta akses kamera
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then((stream) => {
+        video.srcObject = stream;
+      })
+      .catch((err) => {
+        console.error('Gagal mengakses kamera:', err);
+        alert('Gagal mengakses kamera: ' + err.message);
+      });
+  </script>
 </body>
 </html>
